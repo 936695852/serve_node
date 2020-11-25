@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "npm run dev",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www.js",
     "prd": "cross-env NODE_ENV=production node ./bin/www.js"
   },

@@ -39,6 +39,19 @@ const serverHandle = (req, res) => {
   //解析query
   req.query = querystring.parse(url.split('?')[1])
 
+  //解析cookie
+  req.cookie = {}
+  const cookieStr = req.headers.cookie || '' //a=1;b=1;c=3
+  cookieStr.split(';').forEach(item => {
+    if (!item) {
+      return
+    }
+    const arr = item.split('=')
+    const key = arr[0]
+    const val = arr[1]
+    req.cookie[key] = val
+  })
+
   getPostData(req).then(postData => {
     req.body = postData
     //处理blog路由
